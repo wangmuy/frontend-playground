@@ -1,12 +1,12 @@
-import { HttpsProxyAgent } from "https-proxy-agent";
-import { OpenAI } from "langchain/llms/openai";
-import * as dotenv from "dotenv";
+const { HttpsProxyAgent } = require("https-proxy-agent");
+const { OpenAI } = require("langchain/llms/openai");
+const dotenv = require("dotenv");
 dotenv.config();
 
 // https://github.com/openai/openai-node/issues/85
 // https://github.com/hwchase17/langchainjs/issues/1454
 const proxy = new HttpsProxyAgent("http://127.0.0.1:1091")
-export const run = async () => {
+exports.run = async () => {
   const model = new OpenAI(
     {temperature: 0.9},
     {
@@ -17,4 +17,4 @@ export const run = async () => {
   console.log({res})
 };
 
-run();
+exports.run();
